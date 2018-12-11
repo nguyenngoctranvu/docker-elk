@@ -62,4 +62,4 @@ configs:
 
 networks:
   elk:
-    driver: overlay
+    external: true
