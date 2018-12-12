@@ -37,7 +37,8 @@ services:
       replicas: 1
 
   kibana:
-    image: docker.elastic.co/kibana/kibana-oss:6.4.0
+    image: docker.elastic.co/kibana/kibana:6.4.0
+    # image: docker.elastic.co/kibana/kibana-oss:6.4.0
     ports:
       - "5601:5601"
     configs:
