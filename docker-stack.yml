@@ -8,9 +8,12 @@ services:
     ports:
       - "9200:9200"
       - "9300:9300"
-    configs:
-      - source: elastic_config
-        target: /usr/share/elasticsearch/config/elasticsearch.yml
+    volumes:
+      - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch_data:/usr/share/elasticsearch/data
+    # configs:
+    #   - source: elastic_config
+    #     target: /usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       ES_JAVA_OPTS: "-Xmx2G -Xms2G"
     networks:
@@ -43,25 +46,27 @@ services:
     # image: docker.elastic.co/kibana/kibana-oss:6.4.0
     ports:
       - "5601:5601"
-    configs:
-      - source: kibana_config
-        target: /usr/share/kibana/config/kibana.yml
+    volumes:
+      - ./kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    # configs:
+    #   - source: kibana_config
+    #     target: /usr/share/kibana/config/kibana.yml
     networks:
       - elk
     deploy:
       mode: replicated
       replicas: 1
 
-configs:
-
-  elastic_config:
-    file: ./elasticsearch/config/elasticsearch.yml
-  # logstash_config:
-  #   file: ./logstash/config/logstash.yml
-  # logstash_pipeline:
-  #   file: ./logstash/pipeline/logstash.conf
-  kibana_config:
-    file: ./kibana/config/kibana.yml
+# configs:
+#
+#   elastic_config:
+#     file: ./elasticsearch/config/elasticsearch.yml
+#   # logstash_config:
+#   #   file: ./logstash/config/logstash.yml
+#   # logstash_pipeline:
+#   #   file: ./logstash/pipeline/logstash.conf
+#   kibana_config:
+#     file: ./kibana/config/kibana.yml
 
 networks:
   elk:
