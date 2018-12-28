@@ -10,7 +10,8 @@ services:
       - "9300:9300"
     volumes:
       - ./elasticsearch/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-      - esdata:/usr/share/elasticsearch/data
+      # - esdata:/usr/share/elasticsearch/data
+      - /elk/:/usr/share/elasticsearch/data
     # configs:
     #   - source: elastic_config
     #     target: /usr/share/elasticsearch/config/elasticsearch.yml
