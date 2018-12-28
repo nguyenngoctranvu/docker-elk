@@ -20,7 +20,7 @@ services:
       - elk
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
 
   logstash:
     image: docker.elastic.co/logstash/logstash:6.4.0
@@ -58,7 +58,7 @@ services:
       - elk
     deploy:
       mode: replicated
-      replicas: 1
+      replicas: 2
 
 # configs:
 #
